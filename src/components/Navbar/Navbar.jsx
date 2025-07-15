@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -8,9 +8,8 @@ const Navbar = () => {
         <h1 className='text-3xl'>React Auth</h1>
       </div>
       <div className='flex gap-5 font-bold'>
-        <a href='/login' className=' px-3 py-1 items-center'>Login</a>
-        <a href='/profile' className=' px-3 py-1 items-center'>Profile</a>
-        <a href='/logout' className='border border-2 border-white px-3 py-1 items-center'>Logout</a>
+        <Link to="/signup"  className=' px-3 py-1 items-center'>Login</Link>
+        <Link to="/login" className=' px-3 py-1 items-center'>Profile</Link>
       </div>
     </div>
   )
