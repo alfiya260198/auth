@@ -51,3 +51,8 @@ button{
     width: 100px;
     margin: auto;
 }
+
+.chngepass-text{
+    text-align: center;
+    color: white;
+}
