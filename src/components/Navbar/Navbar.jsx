@@ -1,18 +1,40 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+import './Navbar.css';
 
 const Navbar = () => {
+  const { token, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
-    <div className='flex justify-between bg-purple-950 p-4 text-white '>
-      <div>
-        <h1 className='text-3xl'>React Auth</h1>
+    <div className="container">
+      <div className="nav-left">
+        <h1 className="logo">React Auth</h1>
       </div>
-      <div className='flex gap-5 font-bold'>
-        <Link to="/signup"  className=' px-3 py-1 items-center'>Login</Link>
-        <Link to="/login" className=' px-3 py-1 items-center'>Profile</Link>
+      <div className="nav-links">
+        {!token ? (
+          <Link to="/login" className="nav-link">
+            Login
+          </Link>
+        ) : (
+          <>
+            <Link to="/profile" className="nav-link">
+              Profile
+            </Link>
+            <button onClick={handleLogout} className="nav-link logout-btn">
+              Logout
+            </button>
+          </>
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

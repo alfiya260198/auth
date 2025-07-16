@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+import './Login.css';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const API_KEY = 'AIzaSyBiaxomOFD2z_BkztXkMcUo7i-nlMCvU1s';
 
@@ -25,58 +30,60 @@ const LoginForm = () => {
       );
 
       const { idToken } = response.data;
-      console.log('✅ JWT idToken:', idToken);
-      setLoading(false);
+      login(idToken);
+      navigate('/profile');
+      console.log("✅ User logged in, JWT:", idToken);
     } catch (err) {
       console.error('❌ Login failed:', err);
       setError('Authentication failed. Please check your credentials.');
+    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-purple-950 p-5 mt-5 w-[50%] mx-auto rounded-lg shadow-lg">
-      <h1 className="font-bold text-white text-2xl text-center">Login</h1>
+    <div className="form-container">
+      <h1 className="form-heading">Login</h1>
 
       {error && (
-        <div className="bg-red-500 text-white font-semibold p-3 mt-4 text-center rounded-md">
+        <div className="form-error">
           {error}
         </div>
       )}
 
-      <form className="flex flex-col" onSubmit={handleLogin}>
-        <div className="flex flex-col mt-4">
-          <label className="font-bold text-white text-center">Email</label>
+      <form className="form" onSubmit={handleLogin}>
+        <div className="form-group">
+          <label className="label">Email</label>
           <input
             type="email"
             placeholder="test@gmail.com"
-            className="bg-purple-100 p-3 text-black rounded-md"
+            className="input-field"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
-        <div className="flex flex-col mt-4">
-          <label className="font-bold text-white text-center">Password</label>
+        <div className="form-group">
+          <label className="label">Password</label>
           <input
             type="password"
             placeholder="••••••"
-            className="bg-purple-100 p-3 text-black rounded-md"
+            className="input-field"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <div className="mt-4 w-[15%] mx-auto">
+        <div className="btn-container">
           {loading ? (
-            <div className="flex justify-center">
-              <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div className="loading">
+              <div className="spin"></div>
             </div>
           ) : (
             <button
               type="submit"
-              className="bg-white text-black p-3 font-bold text-purple-950 border rounded-lg w-full hover:bg-gray-200"
+              className="submit-btn"
             >
               Login
             </button>

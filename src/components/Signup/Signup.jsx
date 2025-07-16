@@ -39,22 +39,22 @@ const Signup = () => {
   };
 
   return (
-    <div className="bg-purple-950 p-5 mt-5 w-[50%] mx-auto rounded-lg shadow-lg">
-      <h1 className="font-bold text-white text-2xl text-center">Sign Up</h1>
+    <div className="signup-container">
+      <h1 className="signup-heading">Sign Up</h1>
 
       {error && (
-        <div className="bg-red-500 text-white font-semibold p-3 mt-4 text-center rounded-md">
+        <div className="signup-error">
           {error}
         </div>
       )}
 
-      <form className="flex flex-col" onSubmit={handleSignup}>
-        <div className="flex flex-col mt-4">
-          <label className="font-bold text-white text-center">Email</label>
+      <form className="signup-form" onSubmit={handleSignup}>
+        <div className="signup-group">
+          <label className="signup-label">Email</label>
           <input
             type="email"
             placeholder="test@gmail.com"
-            className="bg-purple-100 p-3 text-black rounded-md"
+            className="signup-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -62,26 +62,26 @@ const Signup = () => {
         </div>
 
         <div className="flex flex-col mt-4">
-          <label className="font-bold text-white text-center">Password</label>
+          <label className="signup-label">Password</label>
           <input
             type="password"
             placeholder="••••••"
-            className="bg-purple-100 p-3 text-black rounded-md"
+            className="signup-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <div className="mt-4 w-[15%] mx-auto">
+        <div className="loading-btn-container">
           {loading ? (
-            <div className="flex justify-center">
+            <div className="loading-signup">
               <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
             </div>
           ) : (
             <button
               type="submit"
-              className="bg-white text-black p-3 font-bold text-purple-950 border rounded-lg w-full hover:bg-gray-200"
+              className="signup-button"
             >
               Sign Up
             </button>
@@ -89,9 +89,9 @@ const Signup = () => {
         </div>
       </form>
 
-      <p className="text-center text-white mt-4">
+      <p className="account">
         Already have an account?{' '}
-        <Link to="/login" className="underline text-blue-300">Login</Link>
+        <Link to="/login" className="login-link">Login</Link>
       </p>
     </div>
   );
