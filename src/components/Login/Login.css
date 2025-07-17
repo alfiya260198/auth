@@ -56,3 +56,17 @@ button{
     text-align: center;
     color: white;
 }
+
+.account, .login-link{
+    color: white;
+    text-align: center;
+}
+
+.form-error{
+    color: white;
+    background-color: rgb(218, 0, 0);
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+}

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import LoginForm from './components/Login/LoginForm';
 import Profile from './components/Profile/Profile';
 import ChangePassword from './components/Login/ChangePassword.jsx';
+import Signup from './components/Signup/Signup.jsx';
 
 const ProtectedRoute = ({ children }) => {
   const { token } = useAuth();
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
+        <Route path='/' element={<Signup />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/login" element={<LoginForm />} />
           <Route

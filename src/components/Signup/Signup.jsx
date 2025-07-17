@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
+import '../Login/Login.css'
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -39,49 +40,49 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
-      <h1 className="signup-heading">Sign Up</h1>
+    <div className="form-container">
+      <h1 className="form-heading">Sign Up</h1>
 
       {error && (
-        <div className="signup-error">
+        <div className="form-error">
           {error}
         </div>
       )}
 
-      <form className="signup-form" onSubmit={handleSignup}>
-        <div className="signup-group">
-          <label className="signup-label">Email</label>
+      <form className="form" onSubmit={handleSignup}>
+        <div className="form-group">
+          <label className="label">Email</label>
           <input
             type="email"
             placeholder="test@gmail.com"
-            className="signup-input"
+            className="input-field"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </div>
 
-        <div className="flex flex-col mt-4">
-          <label className="signup-label">Password</label>
+        <div className="form-group">
+          <label className="label">Password</label>
           <input
             type="password"
             placeholder="••••••"
-            className="signup-input"
+            className="input-field"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
-        <div className="loading-btn-container">
+        <div className="btn-container">
           {loading ? (
-            <div className="loading-signup">
-              <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+            <div className="loading">
+              <div className="spin"></div>
             </div>
           ) : (
             <button
               type="submit"
-              className="signup-button"
+              className="submit-btn"
             >
               Sign Up
             </button>
