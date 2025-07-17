@@ -29,9 +29,9 @@ const LoginForm = () => {
         }
       );
 
-      const { idToken } = response.data;
-      login(idToken);
-      navigate('/profile');
+      const idToken = response.data.idToken;
+  login(idToken); // ✅ Save to context + localStorage
+  navigate('/profile');
       console.log("✅ User logged in, JWT:", idToken);
     } catch (err) {
       console.error('❌ Login failed:', err);

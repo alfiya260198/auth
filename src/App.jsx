@@ -22,13 +22,14 @@ function App() {
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/login" element={<LoginForm />} />
           <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
+  path="/profile"
+  element={
+    <ProtectedRoute>
+      <Profile />
+    </ProtectedRoute>
+  }
+/>
+
           <Route path="*" element={<Navigate to="/profile" />} />
         </Routes>
       </BrowserRouter>
